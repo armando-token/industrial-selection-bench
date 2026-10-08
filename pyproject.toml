@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "industrial-selection-bench"
+version = "0.1.0"
+description = "Industrial Selection Bench: Comparative benchmark of model-based, RAG, scraping, and deterministic rule engines on industrial equipment manuals"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Armando Silva Guizado" }
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+    "jinja2>=3.1.3",
+    "httpx>=0.27.0",
+    "networkx>=3.2.1",
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "pandas>=2.2.0",
+    "matplotlib>=3.8.0",
+    "pyyaml>=6.0.1",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "python-dotenv>=1.0.0",
+    "pypdf>=4.0.0",
+]
+
+[project.scripts]
+industrial-lab = "industrial_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "live_providers: optional ultra-light live provider smokes (deselect by default; set RUN_LIVE_PROVIDER_SMOKE=1)",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

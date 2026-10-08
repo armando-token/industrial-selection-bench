@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ product.name }} | Detalle de Producto</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --warning-bg: #fef3c7;
+      --warning-border: #f59e0b;
+      --warning-text: #92400e;
+      --success-bg: #dcfce7;
+      --success-text: #166534;
+      --danger-bg: #fee2e2;
+      --danger-text: #991b1b;
+      --border-color: #e2e8f0;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .simulation-badge {
+      display: inline-block;
+      background-color: var(--warning-bg);
+      color: var(--warning-text);
+      border: 2px solid var(--warning-border);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .back-nav {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .back-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .product-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-id-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #e2e8f0;
+      color: #334155;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    .model-info {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .model-info strong {
+      color: #334155;
+    }
+
+    .description {
+      font-size: 1.05rem;
+      color: #334155;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .commercial-box {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .commercial-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .commercial-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .commercial-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #047857;
+    }
+
+    .stock-badge {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+    }
+
+    .in-stock {
+      background-color: var(--success-bg);
+      color: var(--success-text);
+    }
+
+    .out-of-stock {
+      background-color: var(--danger-bg);
+      color: var(--danger-text);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+
+    .specs-table th, .specs-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .specs-table th {
+      background-color: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+      width: 40%;
+    }
+
+    .specs-table td {
+      background-color: #ffffff;
+      color: #0f172a;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9rem;
+    }
+
+    .doc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .doc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+    }
+
+    .doc-item:hover {
+      background: #f1f5f9;
+    }
+
+    .doc-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .doc-title {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .doc-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .btn-download {
+      background-color: #0284c7;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-download:hover {
+      background-color: #0369a1;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="simulation-badge">
+      &#9888; CATÁLOGO DE SIMULACIÓN - PRECIOS Y STOCK SIMULADOS
+    </div>
+
+    <nav class="back-nav">
+      <a href="/">&larr; Volver al catálogo general</a>
+    </nav>
+
+    <main class="card">
+      <div class="product-header">
+        <span class="product-id-tag">{{ product.product_id }}</span>
+        <h1>{{ product.name }}</h1>
+        <div class="model-info">
+          Fabricante: <strong>{{ product.manufacturer or 'N/D' }}</strong> &bull;
+          Modelo Exacto: <strong>{{ product.exact_model or 'N/D' }}</strong> &bull;
+          Variante: <strong>{{ product.variant or 'N/D' }}</strong> &bull;
+          SKU: <strong>{{ product.sku or 'N/D' }}</strong>
+        </div>
+      </div>
+
+      <p class="description">{{ product.description or 'Sin descripción detallada.' }}</p>
+
+      <div class="commercial-box">
+        <div class="commercial-item">
+          <span class="commercial-label">Precio Unitario Simulado</span>
+          <span class="commercial-value">
+            {% if commerce and commerce.price_minor is not none %}
+              {{ "%.2f" | format(commerce.price_minor / 100.0) }} {{ commerce.currency }}
+            {% else %}
+              No disponible
+            {% endif %}
+          </span>
+        </div>
+
+        <div class="commercial-item">
+          <span class="commercial-label">Disponibilidad en Inventario</span>
+          <div>
+            {% if commerce and commerce.stock_available > 0 %}
+              <span class="stock-badge in-stock">&#10003; {{ commerce.stock_available }} unidades disponibles</span>
+            {% else %}
+              <span class="stock-badge out-of-stock">&#10007; Sin existencias (Agotado)</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="commercial-item">
+          <span class="commercial-label">Revisión Comercial</span>
+          <span style="font-size: 0.95rem; font-weight: 600; color: #475569;">{{ commerce.revision if commerce else 'rev-desconocida' }}</span>
+        </div>
+      </div>
+
+      <h2>Especificaciones Técnicas Extraídas</h2>
+      {% if product.specs %}
+      <table class="specs-table">
+        <tbody>
+          {% for key, val in product.specs.items() %}
+          <tr>
+            <th>{{ key }}</th>
+            <td>{{ val }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">No se han registrado especificaciones estructuradas para este producto.</p>
+      {% endif %}
+
+      <h2>Documentación Técnica y Manuales Oficiales</h2>
+      {% if product.documents %}
+      <ul class="doc-list">
+        {% for doc in product.documents %}
+        <li class="doc-item">
+          <div class="doc-info">
+            <span class="doc-title">{{ doc.title or doc.document_id }}</span>
+            <span class="doc-meta">
+              Tipo: {{ doc.source_kind | upper }} &bull; Archivo: {{ doc.filename or (doc.document_id + '.pdf') }} &bull; Páginas: {{ doc.page_count or 'N/D' }}
+            </span>
+          </div>
+          <a href="/documents/{{ doc.document_id }}.pdf" target="_blank" class="btn-download">
+            &#128196; Descargar PDF
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p style="color: var(--text-muted);">No hay documentos vinculados a este producto.</p>
+      {% endif %}
+    </main>
+
+    <footer>
+      <div>
+        <span>Controlnautas Industrial Selection Lab &bull; MEGAPLAN §6</span>
+      </div>
+      <div>
+        <a href="/">Catálogo</a> &bull;
+        <a href="/api/commerce/{{ product.product_id }}">API Comercio</a> &bull;
+        <a href="/healthz">Healthz</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

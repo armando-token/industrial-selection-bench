@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Data and artifacts (mounted via compose volumes)
+data/
+runs/
+runs/*
+model_cache/
+model_cache/*
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing & quality caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

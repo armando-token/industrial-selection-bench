@@ -1,0 +1,122 @@
+# Model configurations for Industrial Selection Lab
+# Defines concrete model identifiers, providers, endpoints, and capabilities.
+
+jev:
+  # Prefer jev-preview (resolves to concrete jev-1.13.0 at call time) or freeze jev-1.13.0.
+  # jev-latest exists on TypeSafe but MUST NOT be used for official freeze (MEGAPLAN §9.5).
+  # Do NOT use systemone-preview-v1 (unknown / rejected by API).
+  default_model: jev-preview
+  models:
+    jev-preview:
+      id: jev-preview
+      provider: typesafe
+      endpoint: https://api.typesafe.ai/v1/systemone
+      type: choice_judge
+      resolves_to: jev-1.13.0
+      capabilities:
+        - choice
+        - confidence
+        - state_evaluation
+      max_state_tokens: 8000
+      timeout_seconds: 30
+      description: "TypeSafe AI Jev preview alias; live smoke resolved to jev-1.13.0. Allowed for freeze preference alongside concrete jev-1.13.0."
+    jev-1.13.0:
+      id: jev-1.13.0
+      provider: typesafe
+      endpoint: https://api.typesafe.ai/v1/systemone
+      type: choice_judge
+      capabilities:
+        - choice
+        - confidence
+        - state_evaluation
+      max_state_tokens: 8000
+      timeout_seconds: 30
+      description: "TypeSafe AI Jev concrete frozen model id returned by API for jev-preview calls."
+    typesafe/jev:
+      id: typesafe/jev
+      provider: typesafe
+      endpoint: https://api.typesafe.ai/v1/systemone
+      type: choice_judge
+      capabilities:
+        - choice
+        - confidence
+        - state_evaluation
+      max_state_tokens: 8000
+      timeout_seconds: 30
+      description: "TypeSafe AI Jev official production endpoint alias (map to concrete id at freeze)."
+    # NOTE: jev-latest is listed by TypeSafe models API but FORBIDDEN for official freeze (§9.5).
+    # Do not add it as a runnable default.
+
+llm:
+  default_model: google.gemma-4-31b
+  models:
+    google.gemma-4-31b:
+      id: google.gemma-4-31b
+      provider: bedrock-mantle
+      base_url: https://bedrock-mantle.us-east-1.api.aws/openai/v1
+      context_window: 128000
+      max_output_tokens: 8192
+      supports_tools: true
+      supports_json_schema: true
+      capabilities:
+        - tool_calling
+        - structured_output
+        - json_mode
+      auth_env:
+        - LLM_API_KEY
+        - AWS_BEARER_TOKEN_BEDROCK
+      description: "Amazon Bedrock Mantle OpenAI-compatible chat completions (Gemma 4 31B). Auth via AWS_BEARER_TOKEN_BEDROCK / LLM_API_KEY."
+    gpt-4o-mini:
+      id: gpt-4o-mini
+      provider: openai
+      context_window: 128000
+      max_output_tokens: 16384
+      supports_tools: true
+      supports_json_schema: true
+      capabilities:
+        - tool_calling
+        - structured_output
+        - json_mode
+      description: "OpenAI GPT-4o-mini standard baseline model (optional alternate)"
+    claude-3-5-sonnet:
+      id: claude-3-5-sonnet-20241022
+      alias: claude-3-5-sonnet
+      provider: anthropic
+      context_window: 200000
+      max_output_tokens: 8192
+      supports_tools: true
+      supports_json_schema: true
+      capabilities:
+        - tool_calling
+        - structured_output
+        - prompt_caching
+      description: "Anthropic Claude 3.5 Sonnet frontier model (optional alternate)"
+    gemini-1.5-flash:
+      id: gemini-1.5-flash-002
+      alias: gemini-1.5-flash
+      provider: google
+      context_window: 1048576
+      max_output_tokens: 8192
+      supports_tools: true
+      supports_json_schema: true
+      capabilities:
+        - tool_calling
+        - structured_output
+        - context_caching
+      description: "Google Gemini 1.5 Flash high-speed multimodal model (optional alternate)"
+
+embeddings:
+  default_model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  models:
+    sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2:
+      id: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+      revision: bf91b92e850b57e75bf19934fc0cf576ef99e030
+      provider: local
+      runtime: sentence-transformers
+      dimension: 384
+      max_seq_length: 128
+      window: 96
+      overlap: 16
+      similarity_metric: cosine
+      normalize_embeddings: true
+      description: "Multilingual MiniLM 12-layer embedding model for cross-lingual query-document matching"

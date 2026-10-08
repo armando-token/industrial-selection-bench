@@ -1,0 +1,37 @@
+# Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+The data, scenario specifications, synthetic fixtures, benchmark cases, and results in this repository are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+You can review a copy of the license at:
+https://creativecommons.org/licenses/by/4.0/
+
+And the full legal code at:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+---
+
+## Scope of License
+
+This license applies to the benchmark artifacts, metadata, annotations, evaluation logs, and configuration files created for the Industrial Selection Bench, specifically including:
+
+- `data/benchmark/` (synthetic development and testing cases)
+- `data/benchmark_reserved/` (held-out evaluation cases, requirements, and gold annotations)
+- `data/scenarios/` (simulated catalog scenarios and parameters)
+- `data/synthetic_fixtures/` (fictional FixtureCorp test fixtures)
+- `data/manifests/` (catalog structure, document metadata, and verification checksums)
+- `results/` (benchmark telemetry, evaluation records, statistical analyses, and summary metrics)
+
+## Explicit Exclusions
+
+This license **DOES NOT** apply to:
+
+1. **Manufacturer Manuals and Documentation**: Original manufacturer PDF documents, datasheets, user manuals, installation sheets, and engineering guides (such as materials from Horner Automation, TZONE, King Electric, or other equipment manufacturers).
+2. **Proprietary Vendor Text**: Any verbatim text, diagrams, drawings, illustrations, tables, or copyrighted content originating from manufacturer publications.
+
+All manufacturer manuals and documentation remain the exclusive intellectual property and copyright of their respective authors and publishers. This repository does not redistribute proprietary manufacturer PDFs or text. Users replicating the benchmark must download original documentation directly from the respective manufacturers in compliance with manufacturer terms and conditions.
+
+## Attribution
+
+When sharing, adapting, or building upon this data, you must provide appropriate credit as follows:
+
+> Industrial Selection Bench © 2026 by Armando Silva Guizado is licensed under CC BY 4.0.

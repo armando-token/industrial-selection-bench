@@ -1,0 +1,44 @@
+# [SIMULATED COMMERCE / NON-OFFICIAL]
+# Prices/stock are LAB-SIMULATED. Real shop catalog products: P_X4, P_THT, P_UHEAT.
+# Legacy P1/P2/P3 commerce entries retained ONLY for offline unit tests on synthetic fixtures.
+scenario_id: S0001
+scenario_family_id: FAMILY-REAL-G2
+data_origin: simulated_commerce
+official_status: NON-OFFICIAL
+is_official: false
+catalog_version: v1
+commerce_revision: commerce-sim-g2-v1
+commerce_simulated: true
+description: Simulated commercial scenario for real G2 catalog products (prices/stock
+  invented for lab demo only)
+products:
+  P_X4:
+    price_minor: 89900
+    currency: USD
+    stock_available: 8
+    is_simulated: true
+  P_THT:
+    price_minor: 4500
+    currency: USD
+    stock_available: 40
+    is_simulated: true
+  P_UHEAT:
+    price_minor: 12900
+    currency: USD
+    stock_available: 15
+    is_simulated: true
+  P1:
+    price_minor: 45000
+    currency: USD
+    stock_available: 10
+    is_simulated: true
+  P2:
+    price_minor: 12000
+    currency: USD
+    stock_available: 25
+    is_simulated: true
+  P3:
+    price_minor: 8500
+    currency: USD
+    stock_available: 15
+    is_simulated: true

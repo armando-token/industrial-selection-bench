@@ -1,0 +1,24 @@
+services:
+  ingestor:
+    image: industrial-selection-lab:local
+    env_file: .env
+    environment:
+      LAB_DATA_ROOT: /data
+      LAB_RUNS_ROOT: /runs
+      SHOP_BASE_URL: http://shop:8081
+      PYTHONPATH: /app/src
+    volumes:
+      - ./configs:/app/configs:ro
+      - ./src:/app/src:ro
+      - ./data/raw:/data/raw:ro
+      - ./data/manifests:/data/manifests:ro
+      - ./data/scenarios:/data/scenarios:ro
+      - ./data/benchmark:/data/benchmark:ro
+      - ./data/pages:/data/pages
+      - ./data/facts:/data/facts
+      - ./data/graph:/data/graph
+      - ./data/rag:/data/rag
+      - ./data/review:/data/review
+      - ./runs:/runs
+      - ./model_cache:/home/lab/.cache
+    mem_limit: 10g

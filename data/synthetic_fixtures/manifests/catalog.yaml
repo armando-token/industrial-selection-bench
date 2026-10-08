@@ -1,0 +1,62 @@
+# [SYNTHETIC FIXTURE / NON-OFFICIAL]
+# Synthetic fixture catalog for software verification. Real product catalog is on STANDBY for G2.
+catalog_id: controlnautas-three-products-v1
+schema_version: '1.0'
+data_origin: synthetic_fixture
+official_status: NON-OFFICIAL
+is_official: false
+products:
+  - product_id: P1
+    sku: FIXTURE-P1-PLC
+    manufacturer: FixtureCorp
+    exact_model: FX-CPU-24V
+    variant: standard
+    documents:
+      - document_id: D1_P1_MANUAL
+        product_ids:
+          - P1
+        filename: fixture_p1_manual.pdf
+        sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        revision: revA
+        page_count: 5
+        mime_type: application/pdf
+        source_kind: manual
+        language: en
+        source_url: null
+        captured_at: "2026-10-01T00:00:00Z"
+  - product_id: P2
+    sku: FIXTURE-P2-PSU
+    manufacturer: FixtureCorp
+    exact_model: FX-PSU-24V-5A
+    variant: standard
+    documents:
+      - document_id: D2_P2_DATASHEET
+        product_ids:
+          - P2
+        filename: fixture_p2_datasheet.pdf
+        sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        revision: rev1
+        page_count: 2
+        mime_type: application/pdf
+        source_kind: datasheet
+        language: en
+        source_url: null
+        captured_at: "2026-10-01T00:00:00Z"
+  - product_id: P3
+    sku: FIXTURE-P3-TEMP
+    manufacturer: FixtureCorp
+    exact_model: FX-TS-420MA
+    variant: standard
+    documents:
+      - document_id: D3_P3_DATASHEET
+        product_ids:
+          - P3
+        filename: fixture_p3_datasheet.pdf
+        sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        revision: rev1
+        page_count: 2
+        mime_type: application/pdf
+        source_kind: datasheet
+        language: en
+        source_url: null
+        captured_at: "2026-10-01T00:00:00Z"
