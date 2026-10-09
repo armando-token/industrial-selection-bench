@@ -7,7 +7,7 @@ name = "industrial-selection-bench"
 version = "0.1.0"
 description = "Industrial Selection Bench: Comparative benchmark of model-based, RAG, scraping, and deterministic rule engines on industrial equipment manuals"
 readme = "README.md"
-license = { text = "Apache-2.0" }
+license = { text = "MIT" }
 requires-python = ">=3.11"
 authors = [
     { name = "Armando Silva Guizado" }

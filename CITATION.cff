@@ -3,7 +3,7 @@ message: "If you use this benchmark, code, or dataset in your research, please c
 title: "Industrial Selection Bench"
 version: 0.1.0
 date-released: 2026-10-08
-license: Apache-2.0
+license: MIT
 authors:
   - family-names: Silva Guizado
     given-names: Armando
